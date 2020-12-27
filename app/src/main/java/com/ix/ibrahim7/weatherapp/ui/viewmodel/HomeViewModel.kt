@@ -23,9 +23,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-    fun getWeather(country:String) {
+    fun getWeather(country:String,units:String) {
         dataWeatherLiveData.postValue(Resource.Loading())
-        val observable = repository.getWeather(country)
+        val observable = repository.getWeather(country,units)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

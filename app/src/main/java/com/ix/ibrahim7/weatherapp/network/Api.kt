@@ -11,10 +11,7 @@ interface Api {
 
     @GET("weather")
     fun getWeather(
-            @Query("q")
-            country: String,
-            @Query("appid")
-            apiKey: String = API_KEY
+            @QueryMap queryParams: HashMap<String, String>
     ): Single<Weather>
 
 

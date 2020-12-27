@@ -18,9 +18,7 @@ import com.ix.ibrahim7.weatherapp.util.Constant.TAG
 class MainFragment : Fragment() {
 
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[HomeViewModel::class.java]
-    }
+
 
     lateinit var mBinding: FragmentMainBinding
 
@@ -38,12 +36,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        viewModel.getWeather("London,uk")
-
-        viewModel.dataWeatherLiveData.observe(viewLifecycleOwner, Observer {
-            Log.v("$TAG weather",it.data.toString())
-        })
 
 
     }
