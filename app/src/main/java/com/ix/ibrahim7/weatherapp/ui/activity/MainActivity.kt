@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         mbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mbinding.root)
 
-        setUpStatusBar(this,0)
+        setUpStatusBar(this,1)
         setSupportActionBar(toolbar)
         toolbar.visibility= View.GONE
     }

@@ -13,19 +13,17 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.ix.ibrahim7.weatherapp.R
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Constant {
 
     const val API_KEY="80a8125b9205c11d51a76afc20e5a47b"
     const val TAG = "eee"
     var on_attach = true
-    var DURATION: Long = 350
-
-    fun getSharePref(context: Context) =
-            context.getSharedPreferences("Share", Activity.MODE_PRIVATE)
-
-    fun editor(context: Context) = getSharePref(context).edit()
-
+    var DURATION: Long = 2000
+    var FILENAMAE:String = "citylist.json"
 
 
     lateinit var dialog: Dialog
@@ -38,8 +36,25 @@ object Constant {
     }
 
 
+    fun convertLongToTime(time: Long): String {
+        val date = Date(time)
+        val format = SimpleDateFormat("yyyy.MM.dd")
+        return format.format(date)
+    }
 
-     fun setAnimation(itemView: View, i: Int,on_attach:Boolean,DURATION:Long) {
+
+    fun getJsonDataFromAsset(context: Context,fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+     fun setAnimation(itemView: View, i: Int,DURATION:Long) {
         var i = i
         if (!on_attach) {
             i = -1
@@ -62,7 +77,7 @@ object Constant {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         if (types == 1) {
-            window.statusBarColor = ContextCompat.getColor(activity, R.color.purple_700)
+            window.statusBarColor = ContextCompat.getColor(activity, R.color.background_color)
         } else {
             window.statusBarColor = ContextCompat.getColor(activity, R.color.purple_200)
         }

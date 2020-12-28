@@ -1,9 +1,8 @@
 package com.ix.ibrahim7.weatherapp.network
 
-import com.ix.ibrahim7.weatherapp.model.Weather
+import com.ix.ibrahim7.weatherapp.model.weather.Weather
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.*
-import com.ix.ibrahim7.weatherapp.util.Constant.API_KEY
 
 interface Api {
 
